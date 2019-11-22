@@ -1,5 +1,5 @@
-/*  FreeRtos + TCP Reference Design TCP Echo Server
- * Project:     TCP Echo Server
+/*  FreeRtos + TCP Reference Design RTOS Vending Machine
+ * Project:     RTOS Vending Machine
  * File name:   PHYHardwareProfile.h
  * Author:      Aaron Ludwig
  * Date:        November 14, 2019

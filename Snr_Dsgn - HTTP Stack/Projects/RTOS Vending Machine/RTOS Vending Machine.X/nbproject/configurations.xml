@@ -132,7 +132,6 @@
         <itemPath>../Vending Machine/TCP.c</itemPath>
         <itemPath>../Vending Machine/Tick.c</itemPath>
         <itemPath>../Vending Machine/UDP.c</itemPath>
-        <itemPath>../Vending Machine/VendingMachine.c</itemPath>
         <itemPath>../Vending Machine/ETHPIC32IntMac.c</itemPath>
         <itemPath>../Vending Machine/LCDBlocking.c</itemPath>
       </logicalFolder>
@@ -160,7 +159,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PK3OBPlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>1.31</languageToolchainVersion>
+        <languageToolchainVersion>2.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -187,6 +186,56 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DHCP.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_IP.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Sockets.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_TCP_IP.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_TCP_WIN.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="../Ethernet_ISR.S" ex="true" overriding="false">
+      </item>
+      <item path="../LAN8720A.c" ex="true" overriding="false">
+      </item>
+      <item path="../NetworkInterface.c" ex="true" overriding="false">
+      </item>
+      <item path="../PHYGeneric.c" ex="true" overriding="false">
+      </item>
+      <item path="../PHY_isr.S" ex="true" overriding="false">
+      </item>
       <C32>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
@@ -319,6 +368,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
         <property key="memories.dataflash" value="true"/>

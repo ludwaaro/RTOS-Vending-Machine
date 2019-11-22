@@ -777,7 +777,6 @@ FreeRTOS_Socket_t *pxSocket;
 		if( ( socketSOCKET_IS_BOUND( pxSocket ) != pdFALSE ) ||
 			( FreeRTOS_bind( xSocket, NULL, 0u ) == 0 ) )
 		{
-            LATBSET = BIT_4;
 			xTicksToWait = pxSocket->xSendBlockTime;
 
 			#if( ipconfigUSE_CALLBACKS != 0 )
@@ -881,11 +880,9 @@ FreeRTOS_Socket_t *pxSocket;
 	}
 	else
 	{
-        LATBSET = BIT_7;
 		/* The data is longer than the available buffer space. */
 		iptraceSENDTO_DATA_TOO_LONG();
 	}
-    LATBSET = BIT_8;
 	return lReturn;
 } /* Tested */
 /*-----------------------------------------------------------*/
@@ -899,7 +896,6 @@ FreeRTOS_Socket_t *pxSocket;
  */
 BaseType_t FreeRTOS_bind( Socket_t xSocket, struct freertos_sockaddr * pxAddress, socklen_t xAddressLength )
 {
-    LATBSET = BIT_6;
 IPStackEvent_t xBindEvent;
 FreeRTOS_Socket_t *pxSocket = ( FreeRTOS_Socket_t * ) xSocket;
 BaseType_t xReturn = 0;

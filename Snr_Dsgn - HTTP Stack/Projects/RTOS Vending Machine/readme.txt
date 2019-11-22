@@ -11,7 +11,14 @@ Directories:
 
 Notes:       	This project expands on the base FreeRTOS project RD1.X from the FreeRTOS.zip file and the
 		Web-Vending Machine Project found on Dr. Frenzel's website to utilize the aspects of the 
-		FreeRTOS library in the Vending Machine's updating procedure.
+		FreeRTOS library in the Vending Machine's updating procedure. I've split up the process of
+		updating the vending machine's data into two tasks: the prvNetworkTask and the prvProcessTask.
+		The first manages the project's network activities using functions from the Microchip Library
+		for Applications (MLA). The second task manages interactions with board IO.
+
+		While the task does not currently use code from the FreeRTOS + TCP library, I have elected to
+		leave those files in should they become useful later as a possible substitute to using the MLA
+		code.
 
 TESTING:     	This project has been tested only using a Digilent Cerebot MX7cK using:
 	     	MPLAB X IDE 		v3.65

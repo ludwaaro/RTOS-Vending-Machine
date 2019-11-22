@@ -4,7 +4,7 @@
  *
  *********************************************************************
  * FileName:        Tick.c
- * Dependencies:    Timer 0 (PIC18) or Timer 1 (PIC24F, PIC24H, 
+ * Dependencies:    Timer 0 (PIC18) or Timer 2 (PIC24F, PIC24H, 
  *					dsPIC30F, dsPIC33F, PIC32)
  * Processor:       PIC18, PIC24F, PIC24H, dsPIC30F, dsPIC33F, PIC32
  * Compiler:        Microchip C32 v1.10b or higher
@@ -80,13 +80,14 @@ static void GetTickCopy(void);
   ***************************************************************************/
 void TickInit(void)
 {
-	// Use Timer 1 for 16-bit and 32-bit processors
-	// 1:256 prescale
-	T2CONbits.TCKPS = 3;
+	// Using Timer 2 for 16-bit and 32-bit processors
+	// 1:256 prescale (this prescale corresponds to different values in T2CONbits
+    // than for T1CONbits as Timer 2 is a Type B timer and Timer 1 is a Type A))
+	T2CONbits.TCKPS = 7;
 	// Base
-	PR1 = 0xFFFF;
+	PR2 = 0xFFFF;
 	// Clear counter
-	TMR1 = 0;
+	TMR2 = 0;
 
 	IPC2bits.T2IP = 2;	// Interrupt priority 2 (low)
 	IFS0CLR = _IFS0_T2IF_MASK;
@@ -120,20 +121,20 @@ static void GetTickCopy(void)
 		IEC0CLR = _IEC0_T2IE_MASK;	// Disable interrupt
 		
 		// Get low 2 bytes
-        wTemp.Val = TMR1;
+        wTemp.Val = TMR2;
         vTickReading[0] = wTemp.v[0];
         vTickReading[1] = wTemp.v[1];
-		//((volatile WORD*)vTickReading)[0] = TMR1;
+		//((volatile WORD*)vTickReading)[0] = TMR2;
 		
 		// Correct corner case where interrupt increments byte[4+] but 
-		// TMR1 hasn't rolled over to 0x0000 yet
+		// TMR2 hasn't rolled over to 0x0000 yet
 		dwTempTicks = dwInternalTicks;
 
-		// PIC32MX3XX/4XX devices trigger the timer interrupt when TMR1 == PR1 
-		// (TMR1 prescalar is 0x00), requiring us to undo the ISR's increment 
+		// PIC32MX3XX/4XX devices trigger the timer interrupt when TMR2 == PR2 
+		// (TMR2 prescalar is 0x00), requiring us to undo the ISR's increment 
 		// of the upper 32 bits of our 48 bit timer in the special case when 
-		// TMR1 == PR1 == 0xFFFF.  For other PIC32 families, the ISR is 
-		// triggered when TMR1 increments from PR1 to 0x0000, making no special 
+		// TMR2 == PR2 == 0xFFFF.  For other PIC32 families, the ISR is 
+		// triggered when TMR2 increments from PR2 to 0x0000, making no special 
 		// corner case.
 		// Get high 4 bytes
 		vTickReading[2] = ((BYTE*)&dwTempTicks)[0];
